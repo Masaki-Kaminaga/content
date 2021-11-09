@@ -10,6 +10,34 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 2021_11_08_130108) do
 
+  create_table "movie_tag_relations", charset: "utf8mb4", force: :cascade do |t|
+    t.bigint "movie_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_movie_tag_relations_on_movie_id"
+    t.index ["tag_id"], name: "index_movie_tag_relations_on_tag_id"
+  end
+
+  create_table "movies", charset: "utf8mb4", force: :cascade do |t|
+    t.string "title"
+    t.text "body"
+    t.string "password"
+    t.text "post_url"
+    t.datetime "started_at"
+    t.datetime "finished_at"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tags", charset: "utf8mb4", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  add_foreign_key "movie_tag_relations", "movies"
+  add_foreign_key "movie_tag_relations", "tags"
 end
