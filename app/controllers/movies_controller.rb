@@ -10,7 +10,17 @@ class MoviesController < ApplicationController
     
     def create
         @movie = Movie.new(movie_params)
+        if @movie.save
+            redirect_to memus_path
+        else
+            render "new"
+        end
     end
+    
+    def edit
+        @movie  = Movie.find(params[:id])
+    end
+    
     
     private
     
