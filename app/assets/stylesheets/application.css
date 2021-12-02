@@ -1,15 +1,722 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+@charset "utf-8";
+
+/*************************
+   リセット
+ *************************/
+html,body,header,screen,div,h1,h2,h3,h4,h5,p,img {
+     padding: 0;
+     margin: 0;
+}
+
+
+/*************************
+  大枠
+ *************************/
+* {
+  box-sizing: border-box;
+}
+
+html {
+  height: 100%;
+  min-width: 1024px;
+}
+
+body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;;
+}
+
+.wrapper {
+  flex: 1;
+}
+
+.screen {
+  height: 100%;
+}
+
+/*************************
+  共通部品
+ *************************/
+
+/*汎用共通スタイル
+*********************/
+.active {
+  display: block !important;
+}
+.ta_right {
+  text-align: right;
+}
+.ta_center {
+  text-align: center;
+}
+.ta_left {
+  text-align: left;
+}
+
+/* 見出しなどの文字色 */
+.txt_red {
+  color: #dc280a;
+}
+
+/*見出し
+*********************/
+.title_mid {
+  position: relative;
+  height: 25px;
+  padding-left: 9px;
+  font-size: 20px;
+  line-height: 1.28;
+}
+.title_mid::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #dc280a;
+  content: "";
+}
+.title_left {
+  font-size: 20px;
+  text-align: left;
+  line-height: 1;
+}
+.title_center {
+  font-size: 20px;
+  text-align: center;
+  line-height: 1;
+}
+
+/*フォーム
+*********************/
+
+/* テキスト入力 */
+input[type=text].under_line {
+  padding: 5px 5px 5px 3px;
+  border-top: none;
+  border-right: none;
+  border-bottom: solid 1px #989898;
+  border-left: none;
+  background-color: rgba(0,0,0,0);
+  font-size: 15px;
+}
+input[type=text].under_line::placeholder {
+  color: #989898;
+}
+
+/* textarea */
+textarea {
+  padding: 5px;
+}
+textarea::placeholder {
+  color: #989898;
+}
+
+/* ドラッグUI */
+.drug_control_wrapper {
+  font-size: 10px;
+}
+.drug_control_wrapper .base_cont {
+  position: relative;
+  width: 100%;
+  height: 2px;
+  background-color: #eae4e4;
+}
+.drug_control_wrapper .base_cont .point {
+  position: absolute;
+  top: -30px;
+  text-align: center;
+}
+.drug_control_wrapper .base_cont .point::before {
+  position: absolute;
+  bottom: -7px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  transform: translateX(-50%);
+  border-style: solid;
+  border-width: 7px 3.5px 0 3.5px;
+  border-color: #000000 rgba(0,0,0,0) rgba(0,0,0,0) rgba(0,0,0,0);
+  content: "";
+}
+.drug_control_wrapper .base_cont .point.start {
+ left: 0;
+ transform: translateX(-50%);
+}
+.drug_control_wrapper .base_cont .point.end {
+ right: 0;
+ transform: translateX(50%);
+}
+.drug_control_wrapper .control_cont {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  color: #1799ff;
+}
+.drug_control_wrapper .control_cont .point {
+  position: absolute;
+  cursor: pointer;
+  user-select: none;
+}
+.drug_control_wrapper .control_cont .point::before {
+  position: absolute;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  background-color: #1799ff;
+  border-radius: 50%;
+  transform: translateX(-50%);
+  content: "";
+}
+.drug_control_wrapper .control_cont .point.start {
+  bottom: -20px;
+}
+.drug_control_wrapper .control_cont .point.start::before {
+  top: -7px;
+}
+.drug_control_wrapper .control_cont .point.end {
+  bottom: -35px;
+}
+.drug_control_wrapper .control_cont .point.end::before {
+  top: -22px;
+}
+
+/* 時間の長さ入力 */
+.time_input {
+  display: flex;
+  width: 5em;
+  padding-bottom: 2px;
+  border-bottom: solid 1px #989898;
+  justify-content: center;
+  align-items: stretch;
+  text-align: center;
+}
+.time_input input[type=number] {
+  width: 2em;
+  padding: 0 4px 0 0;
+  border: none;
+  background-color: #f7f7f7;
+  text-align: right;
+  user-select: none;
+}
+.time_input input[type="number"]::-webkit-outer-spin-button,
+.time_input input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/*ヘッダー
+*********************/
+header {
+  position: relative;
+  height: 80px;
+  padding-top: 9px;
+  background-color: #dc280a;
+  flex-shrink: 0;
+}
+header .header_logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
+header .header_logo img {
+  width: 121px;
+  height: 27px;
+ }
+header .search_area {
+  text-align: center;
+}
+header .search_area input[type=text] {
+  width: 600px;
+  height: 30px;
+  padding: 0 5px;
+  border-radius: 5px;
+  border: none;
+  font-size: 18px;
+  background-image: url(../images/search_icon.png);
+  background-repeat: no-repeat;
+  background-position: 570px center;
+}
+header .trend_container {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  height: 30px;
+  background-color: #333333;
+  color: #fff;
+  line-height: 1.9;
+}
+header .trend_container .trend {
+  max-width: 1000px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+header .trend_container .trend span {
+  width: 100%;
+  display: inline-block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/*ボタン
+ *********************/
+.button_set button {
+  margin-right: 10px;
+}
+.button_set button.btn_lg {
+  margin-right: 20px;
+}
+.button_set button:last-child {
+  margin-right: 0;
+}
+
+button {
+  width: 100px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 0;
+  border: none;
+  cursor: pointer;
+}
+button:active {
+  opacity: 0.7;
+}
+button.execution {
+  background-color: #2e74ff;
+  color: #fff;
+}
+button.cancel {
+  background-color: #efefef;
+  color: #4d4d4d;
+}
+button.btn_lg {
+  width: 200px;
+  height: 60px;
+  border: solid 2px rgba(0,0,0,0);
+  border-radius: 7px;
+  font-size: 22px;
+  font-weight: bold;
+}
+button.btn_lg.cancel {
+  background-color: #fff;
+  border-color: #9c9c9c;
+  color: #666;
+}
+button.btn_lg.execution {
+  background-color: #dc280a;
+  border-color: #dc280a;
+  color: #fff;
+}
+button.btn_lg.delete {
+  background-color: #5c0700;
+  border-color: #5c0700;
+  color: #fff;
+}
+.video_create {
+  position: absolute;
+  top: 7px;
+  right: 10px;
+  width: 160px;
+  height: 38px;
+  border: solid 2px #fff;
+  background-color: transparent;
+  border-radius: 7px;
+  font-size: 14px;
+  color: #fff;
+}
+.video_create:active {
+  background-color: #d7604d;
+}
+
+/*モーダル
+ *********************/
+.modal_overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: none;
+  background-color: rgba(0,0,0,0.5);
+}
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: none;
+  width: 1000px;
+  height: 500px;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 10px;
+  color: #4d4d4d;
+  transform: translate(-50%, -50%);
+  overflow: auto;
+}
+.modal_title {
+  font-size: 30px;
+  font-weight: normal;
+  line-height: 1;
+  margin-bottom: 15px;
+}
+
+/* 小さいモーダル */
+.float_modal {
+  position: absolute;
+  top: 50%;
+  left: 51%;
+  padding: 10px 25px;
+  background-color: rgba(103,103,103,0.9);
+  border-radius: 10px;
+  color: #fff;
+}
+
+ /*************************
+  画面固有スタイル
+ *************************/
+
+ /*TOP画面 (検索画面)
+ *********************/
+ .screen.top {
+   background-color: #fff;
+ }
+ .video_tile_container {
+   max-width: 1000px;
+   margin: 0 auto;
+ }
+.top .video_tile {
+  display: flex;
+  flex-wrap: wrap;
+  padding-top: 20px;
+}
+.top .video_tile .video {
+  position: relative;
+  width: 320px;
+  height: 180px;
+  margin-right: 20px;
+  margin-bottom: 30px;
+  background-color: #e2e2e2;
+  cursor: pointer;
+}
+.top .video_tile .video:nth-of-type(3n) {
+  margin-right: 0;
+}
+.top .video_tile .video .name_area {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  background-color: rgba(0,0,0,0.5);
+}
+.top .video_tile .video .name_area .name {
+  margin: 0;
+  padding: 0 5px;
+  overflow: hidden;
+}
+.top .video_tile .video .name_area .name span {
+  display: inline-block;
+  width: 100%;
+  color: #fff;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 14px;
+  font-weight: normal;
+  line-height: 3;
+  overflow: hidden;
+}
+
+ /*動画ホバー時のモーダル
+ *********************/
+.video_hover_detail {
+  width: 440px;
+  min-height: 250px;
+  display: none;
+  margin: 0 0 0 -220px;
+  transform: translateY(-50%);
+  overflow: hidden;
+}
+.video_hover_detail::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.5);
+  content: "";
+  z-index: 1500;
+}
+.video_hover_detail .video_thumnail {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+}
+.video_hover_detail .video_name {
+  position: relative;
+  margin: 0 0 10px 0;
+  font-size: 24px;
+  font-weight: normal;
+  z-index: 2000;
+}
+.video_hover_detail .video_name span {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.video_hover_detail .tag_area {
+  position: relative;
+  margin-bottom: 10px;
+  z-index: 2000;
+}
+.video_hover_detail .tag_area .tag {
+  margin-right: 10px;
+  color: #1799ff;
+}
+.video_hover_detail .tag_area .tag::before {
+  margin-right: 1px;
+  content: "#";
+}
+.video_hover_detail .description {
+  position: relative;
+  height: 146px;
+  z-index: 2000;
+  overflow-y: auto;
+}
+.video_hover_detail .description span {
+  text-overflow: ellipsis;
+  word-break: break-all;
+}
+
+ /*動画再生モーダル
+ *********************/
+.modal.video_pray .modal_body {
+   display: flex;
+   justify-content: space-between;
+}
+.modal.video_pray .praying_container {
+  width: 660px;
+}
+.modal.video_pray .praying_container video {
+  width: 100%;
+  height: 370px;
+  background-color: gray;
+}
+.modal.video_pray .praying_container .tag_container {
+  margin-bottom: 25px;
+}
+.modal.video_pray .praying_container .tag_container .tag {
+  margin-right: 0.9em;
+  color: #1799ff;
+  font-size: 14px;
+  line-height: 1;
+}
+.modal.video_pray .praying_container .video_discription {
+  margin-bottom: 40px;
+  font-size: 14px;
+}
+.modal.video_pray .praying_container .comment_input {
+  width: 100%;
+  padding: 20px 5px;
+  border-top: solid 2px #e5e5e5;
+  border-right: none;
+  border-left: none;
+  border-bottom: solid 2px #e5e5e5;
+}
+.modal.video_pray .praying_container .button_set {
+  margin: 10px 0 60px;
+  text-align: right;
+}
+.modal.video_pray .praying_container .comment {
+  margin-bottom: 10px;
+  line-height: 1;
+}
+.modal.video_pray .praying_container .comment .comment_text {
+  font-size: 12px;
+  line-height: 1.2;
+}
+.modal.video_pray .praying_container .comment .comment_date {
+  font-size: 11px;
+  color: #b3b3b3;
+}
+.modal.video_pray .relation_container .relation_video {
+  position: relative;
+  width: 230px;
+  height: 130px;
+  margin-bottom: 13px;
+  background-color: #c8c8c8;
+}
+.modal.video_pray .relation_container .relation_video .video_title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  padding: 0 0 0 5px;
+  background-color: rgba(0,0,0,0.5);
+  color: #fff;
+  line-height: 2.6;
+}
+
+/*URL入力画面
+*********************/
+.screen.input_url {
+  padding-top: 170px;
+}
+.input_container {
+  width: 450px;
+  margin: 0 auto;
+}
+.input_url input[type=text].under_line {
+  width: 435px;
+  margin: 15px 0 0 7px;
+}
+.input_url .button_set {
+  margin-top: 45px;
+  text-align: center;
+}
+
+
+/*URL入力確認画面
+*********************/
+.screen.confirm {
+  padding-top: 100px;
+}
+.confirm .confirm_container {
+  width: 750px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border: solid 2px #9c9c9c;
+  border-radius: 7px;
+}
+.confirm .button_set {
+  margin-top: 45px;
+  text-align: center;
+}
+.confirm .thumnail_area .thumnail {
+  width: 200px;
+  height: 115px;
+  margin: 40px auto 20px;
+}
+
+/*既存動画編集
+*********************/
+.video_edit .edit_container {
+  width: 1000px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  padding: 20px 0 50px;
+  justify-content: space-between;
+}
+.video_edit .edit_container .title_left {
+  margin-bottom: 30px;
+}
+.video_edit .edit_container video {
+  width: 100%;
+}
+.video_edit .edit_container > p {
+  width: 100%;
+}
+.video_edit .edit_container .edit_left {
+  width: 445px;
+}
+.video_edit .edit_container .edit_right {
+  width: 500px;
+}
+.video_edit .edit_box {
+  margin-top: 20px;
+}
+.video_edit .edit_container .edit_left .edit_box {
+  margin-top: 12px;
+}
+.video_edit .edit_container .edit_right .edit_box:first-of-type {
+  margin-top: 0;
+}
+.video_edit .edit_container .edit_right .edit_box:nth-of-type(2) {
+  position: relative;
+}
+.video_edit .edit_box .title_mid {
+  margin-bottom: 7px;
+}
+.video_edit .edit_box > input[type=text] {
+  width: 100%;
+}
+.video_edit .edit_box > textarea {
+  width: 100%;
+  height: 120px;
+  resize: none;
+  border: solid 1px #ccc;
+}
+
+/* 挿入コメント */
+.video_edit .edit_box .comment_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 25px;
+}
+.video_edit .edit_box .comment_container .comment_design {
+  display: flex;
+  margin: 0 20px 15px 0;
+}
+.video_edit .edit_box .comment_container .comment_design .label {
+  margin-right: 5px;
+  transform: translateY(1px);
+}
+.video_edit .edit_box .comment_container .comment_design input[type=text] {
+  width: 60px;
+}
+.video_edit .edit_box .comment_container .comment_design.color input[type=text] {
+  width: 75px;
+}
+.video_edit .edit_box .comment_container .comment_design.size input[type=text] {
+  width: 40px;
+}
+
+/* 時間入力エリア */
+.video_edit .drug_control_wrapper {
+  position: absolute;
+  top: 88px;
+  right: 0;
+  width: 390px;
+  background-color: pink;
+  z-index: 1;
+}
+
+/* ボタン */
+.video_edit .button_set {
+  width: 420px;
+  display: flex;
+  margin: 90px auto 0;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.video_edit .button_set button:nth-of-type(2){
+  margin-right: 0;
+}
+.video_edit .button_set button.delete {
+  margin-top: 60px;
+}
+
+/*編集や削除のメッセージ画面
+*********************/
+.complete_messege {
+  padding-top: 130px;
+}
+.complete_messege .button_set {
+  width: 100%;
+  margin-top: 60px;
+  text-align: center;
+}
